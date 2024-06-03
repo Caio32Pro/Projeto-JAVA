@@ -8,9 +8,22 @@ public class Produto {
     public Produto(String nome, String descricao, double preco, int codigo, String tipo) {
         this.nome = nome;
         this.descricao = descricao;
-        this.preco = preco;
+        if (preco<0){
+            throw new IllegalArgumentException();
+        }
+        else {
+            this.preco = preco;
+        }
         this.codigo = codigo;
         this.tipo = tipo;
+    }
+
+    public void exibir() {
+        System.out.println("Nome: " + getNome());
+        System.out.println("Descrição: " + getDescricao());
+        System.out.println("Preço: " + getPreco());
+        System.out.println("Código: " + getCodigo());
+        System.out.println("Tipo: " + getTipo());
     }
 
     public String getNome() {
@@ -52,4 +65,24 @@ public class Produto {
     public void setCodigo(int codigo) {
         this.codigo = codigo;
     }
+
+    public void excluirProduto() {
+        System.out.println("Produto " + getNome() + " excluído.");
+    }
 }
+
+
+/*System.out.print("Digite o nome do cliente que deseja excluir: ");
+                    String nomeExcluir = teclado.nextLine();
+                    boolean encontrado = false;
+                    for (Cliente c : clientes) {
+                        if (c.getNome().equalsIgnoreCase(nomeExcluir)) {
+                            clientes.remove(c);
+                            c.excluirCliente();
+                            encontrado = true;
+                            break;
+                        }
+                    }
+                    if (!encontrado) {
+                        System.out.println("Cliente não encontrado.");
+                    }*/

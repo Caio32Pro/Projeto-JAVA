@@ -1,8 +1,8 @@
 public abstract class Pessoa {
     private String nome;
-    private int idade;
+    private String idade;
 
-    public Pessoa(String nome, int idade) {
+    public Pessoa(String nome, String idade) {
         this.nome = nome;
         this.idade = idade;
     }
@@ -15,11 +15,11 @@ public abstract class Pessoa {
         this.nome = nome;
     }
 
-    public int getIdade() {
+    public String getIdade() {
         return idade;
     }
 
-    public void setIdade(int idade) {
+    public void setIdade(String idade) {
         this.idade = idade;
     }
 }
