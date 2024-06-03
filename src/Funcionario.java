@@ -1,8 +1,12 @@
+import java.util.ArrayList;
+
 public class Funcionario extends Pessoa implements IPessoa{
     private String sexo;
     private String numero;
     private String email;
     //RF = Registro do Funcionário
+
+    private static ArrayList<Funcionario> funcionarios = new ArrayList<>();
 
     @Override
     public void exibir() {
@@ -23,6 +27,10 @@ public class Funcionario extends Pessoa implements IPessoa{
         this.sexo = sexo;
         this.numero = numero;
         this.email = email;
+    }
+
+    public static ArrayList<Funcionario> getFuncionarios() {
+        return funcionarios;
     }
 
     public String getEmail() {

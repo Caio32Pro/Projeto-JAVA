@@ -5,9 +5,6 @@ public class Main {
     public static void main(String[] args) {
 
         Scanner teclado = new Scanner(System.in);
-        ArrayList<Cliente> clientes = new ArrayList<>();
-        ArrayList<Funcionario> funcionarios = new ArrayList<>();
-        ArrayList<Produto> produtos = new ArrayList<>();
 
         System.out.println("Seja muito bem-vindo(a) à Padaria Universo");
         System.out.println("------------------------------------------");
@@ -20,6 +17,7 @@ public class Main {
             System.out.println("Cadastrar [A]" +
                                "\nConsultar [B]" +
                                "\nExcluir [C]" +
+                               "\nInformações [D]" +
                                "\nSair [0]");
             resposta = teclado.nextLine().toUpperCase();
             switch (resposta){
@@ -43,7 +41,7 @@ public class Main {
                                 System.out.println("Digite o email do cliente: ");
                                 String email = teclado.nextLine();
                                 Cliente cli = new Cliente(nome, idade, sexo, numero, email);
-                                clientes.add(cli);
+                                Cliente.getClientes().add(cli);
                                 System.out.println("Cliente cadastrado com sucesso!");
                             }
                             catch(IllegalArgumentException e){
@@ -69,7 +67,7 @@ public class Main {
                                     System.out.println("Digite o email do funcionário: ");
                                     String email1 = teclado.nextLine();
                                     Funcionario func = new Funcionario(nome1, idade1, sexo1, numero1, email1);
-                                    funcionarios.add(func);
+                                    Funcionario.getFuncionarios().add(func);
                                     System.out.println("funcionário cadastrado com sucesso!");
                                 }
 
@@ -99,7 +97,7 @@ public class Main {
                                     System.out.println("Digite o tipo do produto (doce ou salgado): ");
                                     String tipo = teclado.nextLine();
                                     Produto prod = new Produto(nome2, descricao, preco, codigo, tipo);
-                                    produtos.add(prod);
+                                    Produto.getProdutos().add(prod);
                                     System.out.println("Produto cadastrado com sucesso!");
                                 }
                             }
@@ -126,16 +124,17 @@ public class Main {
                                 case "1": {
                                     System.out.println("Digite o nome do cliente: ");
                                     String a = teclado.nextLine().toUpperCase();
-                                    for (Cliente c : clientes) {
+                                    for (Cliente c : Cliente.getClientes()) {
                                         if (c.getNome().startsWith(a)) {
                                             c.exibir();
                                             System.out.println("-------------------------");
                                         }
                                     }
+
                                 break;
                                 }
                                 case "2": {
-                                    for (Cliente c : clientes) {
+                                    for (Cliente c : Cliente.getClientes()) {
                                         c.exibir();
                                         System.out.println("-------------------------");
                                     }
@@ -152,7 +151,7 @@ public class Main {
                                 case "1": {
                                     System.out.println("Digite o nome do funcionário: ");
                                     String b = teclado.nextLine().toUpperCase();
-                                    for (Funcionario f : funcionarios) {
+                                    for (Funcionario f : Funcionario.getFuncionarios()) {
                                         if (f.getNome().startsWith(b)) {
                                             f.exibir();
                                             System.out.println("-------------------------");
@@ -161,7 +160,7 @@ public class Main {
                                 break;
                                 }
                                 case "2": {
-                                    for (Funcionario f : funcionarios) {
+                                    for (Funcionario f : Funcionario.getFuncionarios()) {
                                         f.exibir();
                                         System.out.println("-------------------------");
                                     }
@@ -178,7 +177,7 @@ public class Main {
                                 case "1": {
                                     System.out.println("Digite a descrição do produto: ");
                                     String c = teclado.nextLine().toUpperCase();
-                                    for (Produto p : produtos) {
+                                    for (Produto p : Produto.getProdutos()) {
                                         if (p.getDescricao().startsWith(c)) {
                                             p.exibir();
                                             System.out.println("-------------------------");
@@ -194,7 +193,7 @@ public class Main {
                                 break;
                                 }
                                 case "2": {
-                                    for (Produto p : produtos) {
+                                    for (Produto p : Produto.getProdutos()) {
                                         p.exibir();
                                         System.out.println("-------------------------");
                                     }
@@ -217,9 +216,9 @@ public class Main {
                             System.out.print("Digite o nome do cliente que deseja excluir: ");
                             String nomeExcluir = teclado.nextLine().toUpperCase();
                             boolean encontrado = false;
-                            for (Cliente c : clientes) {
+                            for (Cliente c : Cliente.getClientes()) {
                                 if (c.getNome().equalsIgnoreCase(nomeExcluir)) {
-                                    clientes.remove(c);
+                                    Cliente.getClientes().remove(c);
                                     c.excluirCliente();
                                     encontrado = true;
                                     break;
@@ -234,9 +233,9 @@ public class Main {
                             System.out.print("Digite o nome do funcionário que deseja excluir: ");
                             String nomeExcluir = teclado.nextLine().toUpperCase();
                             boolean encontrado = false;
-                            for (Funcionario f : funcionarios) {
+                            for (Funcionario f : Funcionario.getFuncionarios()) {
                                 if (f.getNome().equalsIgnoreCase(nomeExcluir)) {
-                                    funcionarios.remove(f);
+                                    Funcionario.getFuncionarios().remove(f);
                                     f.excluirFuncionario();
                                     encontrado = true;
                                     break;
@@ -251,9 +250,9 @@ public class Main {
                             System.out.print("Digite o nome do produto que deseja excluir: ");
                             String nomeExcluir = teclado.nextLine().toUpperCase();
                             boolean encontrado = false;
-                            for (Produto p : produtos) {
+                            for (Produto p : Produto.getProdutos()) {
                                 if (p.getNome().equalsIgnoreCase(nomeExcluir)) {
-                                    produtos.remove(p);
+                                    Produto.getProdutos().remove(p);
                                     p.excluirProduto();
                                     encontrado = true;
                                     break;
@@ -264,6 +263,25 @@ public class Main {
                             }
                             break;
                         }
+                    }
+                    break;
+                }
+                case "D":{
+                    System.out.println("Tela de informações:");
+                    System.out.println("Informações dos clientes [1]" +
+                                       "\nInformações dos produtos [2]");
+                    String info = teclado.nextLine().toUpperCase();
+                    switch (info){
+                        case "1":{
+                            Cliente.maiorIdade2();
+                            Cliente.menorIdade2();
+                            System.out.println("Clientes maiores que 60 anos: " + Cliente.mais60());
+                            break;
+                        }
+                        /*case "2":{
+
+                            break;
+                        }*/
                     }
                     break;
                 }

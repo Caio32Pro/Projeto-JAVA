@@ -1,8 +1,16 @@
+import java.util.ArrayList;
+
 public class Cliente extends Pessoa implements IPessoa{
     private String sexo;
     private String num;
     private String Email;
     //RC = Registro do Cliente
+
+    private static ArrayList<Cliente> clientes = new ArrayList<>();
+
+    public static ArrayList<Cliente> getClientes() {
+        return clientes;
+    }
 
     @Override
     public void exibir() {
@@ -47,4 +55,51 @@ public class Cliente extends Pessoa implements IPessoa{
     public void excluirCliente() {
         System.out.println("Cliente " + getNome() + " excluído.");
     }
+
+    public static int maiorIdade(){
+        int i=0;
+        for (Cliente c : clientes){
+            if (Integer.parseInt(c.getIdade())>i){
+                i = Integer.parseInt(c.getIdade());
+            }
+        }
+        return i;
+    }
+
+    public static void maiorIdade2(){
+        for (Cliente c : Cliente.getClientes()){
+            if (Integer.parseInt(c.getIdade())== maiorIdade()){
+                System.out.println("O cliente com maior idade é: " + c.getNome() + " | " + c.getIdade());
+            }
+        }
+    }
+
+    public static int menorIdade(){
+        int a = Integer.parseInt(Cliente.getClientes().getFirst().getIdade());
+        for (Cliente c : clientes){
+            if (Integer.parseInt(c.getIdade())<a){
+                a = Integer.parseInt(c.getIdade());
+            }
+        }
+        return a;
+    }
+
+    public static void menorIdade2(){
+        for (Cliente c : Cliente.getClientes()){
+            if (Integer.parseInt(c.getIdade())== menorIdade()){
+                System.out.println("O cliente com menor idade é: " + c.getNome() + " | " + c.getIdade());
+            }
+        }
+    }
+
+    public static int mais60() {
+        int i = 0;
+        for (Cliente c : clientes){
+            if (Integer.parseInt(c.getIdade())>60){
+                i++;
+            }
+        }
+        return i;
+    }
+
 }

@@ -1,9 +1,13 @@
+import java.util.ArrayList;
+
 public class Produto {
     private String nome;
     private String descricao;
     private double preco;
     private int codigo;
     private String tipo;    //tipo = salgado ou doce
+
+    private static ArrayList<Produto> produtos = new ArrayList<>();
 
     public Produto(String nome, String descricao, double preco, int codigo, String tipo) {
         this.nome = nome;
@@ -24,6 +28,10 @@ public class Produto {
         System.out.println("Preço: " + getPreco());
         System.out.println("Código: " + getCodigo());
         System.out.println("Tipo: " + getTipo());
+    }
+
+    public static ArrayList<Produto> getProdutos() {
+        return produtos;
     }
 
     public String getNome() {
