@@ -87,7 +87,8 @@ public class Main {
                                 String descricao = teclado.nextLine().toUpperCase();
                                 System.out.println("Digite o preço do produto: ");
                                 double preco = teclado.nextDouble();
-                                if (preco<0){
+                                teclado.nextLine();
+                                if (preco==0){
                                     throw new IllegalArgumentException("Produtos não podem ser de graça.");
                                 }
                                 else {
