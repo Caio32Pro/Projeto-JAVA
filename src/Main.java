@@ -36,7 +36,7 @@ public class Main {
                                 String idade = teclado.nextLine();
                                 System.out.println("Digite o sexo do cliente: ");
                                 String sexo = teclado.nextLine();
-                                System.out.println("Digite o número do cliente: ");
+                                System.out.println("Digite o telefone do cliente: ");
                                 String numero = teclado.nextLine();
                                 System.out.println("Digite o email do cliente: ");
                                 String email = teclado.nextLine();
@@ -62,7 +62,7 @@ public class Main {
                                 {
                                     System.out.println("Digite o sexo do funcionário: ");
                                     String sexo1 = teclado.nextLine();
-                                    System.out.println("Digite o número do funcionário: ");
+                                    System.out.println("Digite o telefone do funcionário: ");
                                     String numero1 = teclado.nextLine();
                                     System.out.println("Digite o email do funcionário: ");
                                     String email1 = teclado.nextLine();
@@ -85,7 +85,6 @@ public class Main {
                                 String descricao = teclado.nextLine().toUpperCase();
                                 System.out.println("Digite o preço do produto: ");
                                 double preco = teclado.nextDouble();
-                                teclado.nextLine();
                                 if (preco==0){
                                     throw new IllegalArgumentException();
                                 }
@@ -273,15 +272,22 @@ public class Main {
                     String info = teclado.nextLine().toUpperCase();
                     switch (info){
                         case "1":{
+                            System.out.println("");
                             Cliente.maiorIdade2();
                             Cliente.menorIdade2();
                             System.out.println("Clientes maiores que 60 anos: " + Cliente.mais60());
+                            System.out.println("CLientes menores de 18 anos: " + Cliente.menor18());
+                            System.out.println("A média das idades dos clientes é: " + Cliente.media());
                             break;
                         }
-                        /*case "2":{
-
+                        case "2":{
+                            System.out.println("");
+                            Produto.maiorValor2();
+                            Produto.menorValor2();
+                            System.out.println("Média dos produtos: " + Produto.mediaProd());
+                            System.out.println("Produtos acima da média: " + Produto.maiorMedia());
                             break;
-                        }*/
+                        }
                     }
                     break;
                 }

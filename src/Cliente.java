@@ -102,4 +102,21 @@ public class Cliente extends Pessoa implements IPessoa{
         return i;
     }
 
+    public static int menor18(){
+        int a = 0;
+        for (Cliente c : clientes){
+            if (Integer.parseInt(c.getIdade())<18){
+                a++;
+            }
+        }
+        return a;
+    }
+
+    public static float media(){
+        float a = 0;
+        for (Cliente c : clientes){
+            a += Float.parseFloat(c.getIdade());
+        }
+        return a/clientes.size();
+    }
 }
