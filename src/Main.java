@@ -89,7 +89,7 @@ public class Main {
                                 double preco = teclado.nextDouble();
                                 teclado.nextLine();
                                 if (preco==0){
-                                    throw new IllegalArgumentException("Produtos não podem ser de graça.");
+                                    throw new IllegalArgumentException();
                                 }
                                 else {
                                     teclado.nextLine();
@@ -104,7 +104,7 @@ public class Main {
                                 }
                             }
                             catch (IllegalArgumentException e){
-                                e.getMessage();
+                                System.out.println("Produtos não podem ser de graça.");
                             }
                         break;
                         }
