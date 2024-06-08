@@ -6,7 +6,7 @@ public class Main {
 
         Scanner teclado = new Scanner(System.in);
 
-        System.out.println("Seja muito bem-vindo(a) à Padaria Universo");
+        System.out.println("\n\nSeja muito bem-vindo(a) à Padaria Universo");
         System.out.println("------------------------------------------");
 
         String resposta="";
@@ -212,11 +212,11 @@ public class Main {
                     String exc = teclado.nextLine();
                     switch (exc){
                         case "1":{
-                            System.out.print("Digite o nome do cliente que deseja excluir: ");
-                            String nomeExcluir = teclado.nextLine().toUpperCase();
+                            System.out.print("Digite o email do cliente que deseja excluir: ");
+                            String emailExcluir = teclado.nextLine().toUpperCase();
                             boolean encontrado = false;
                             for (Cliente c : Cliente.getClientes()) {
-                                if (c.getNome().equalsIgnoreCase(nomeExcluir)) {
+                                if (c.getEmail().equalsIgnoreCase(emailExcluir)) {
                                     Cliente.getClientes().remove(c);
                                     c.excluirCliente();
                                     encontrado = true;
@@ -229,11 +229,11 @@ public class Main {
                             break;
                         }
                         case "2":{
-                            System.out.print("Digite o nome do funcionário que deseja excluir: ");
-                            String nomeExcluir = teclado.nextLine().toUpperCase();
+                            System.out.print("Digite o email do funcionário que deseja excluir: ");
+                            String emailExcluir = teclado.nextLine().toUpperCase();
                             boolean encontrado = false;
                             for (Funcionario f : Funcionario.getFuncionarios()) {
-                                if (f.getNome().equalsIgnoreCase(nomeExcluir)) {
+                                if (f.getEmail().equalsIgnoreCase(emailExcluir)) {
                                     Funcionario.getFuncionarios().remove(f);
                                     f.excluirFuncionario();
                                     encontrado = true;
@@ -246,11 +246,12 @@ public class Main {
                             break;
                         }
                         case "3":{
-                            System.out.print("Digite o nome do produto que deseja excluir: ");
-                            String nomeExcluir = teclado.nextLine().toUpperCase();
+                            System.out.print("Digite o código do produto que deseja excluir: ");
+                            int codExcluir = teclado.nextInt();
+                            teclado.nextLine();
                             boolean encontrado = false;
                             for (Produto p : Produto.getProdutos()) {
-                                if (p.getNome().equalsIgnoreCase(nomeExcluir)) {
+                                if (p.getCodigo() == codExcluir) {
                                     Produto.getProdutos().remove(p);
                                     p.excluirProduto();
                                     encontrado = true;
