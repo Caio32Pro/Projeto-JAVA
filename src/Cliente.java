@@ -4,7 +4,6 @@ public class Cliente extends Pessoa implements IPessoa{
     private String sexo;
     private String num;
     private String Email;
-    //RC = Registro do Cliente
 
     private static ArrayList<Cliente> clientes = new ArrayList<>();
 
@@ -23,7 +22,17 @@ public class Cliente extends Pessoa implements IPessoa{
 
     public Cliente(String nome, String idade, String sexo, String num, String Email){
         super(nome, idade);
-        this.Email = Email;
+        try {
+            if (Email.endsWith("@gmail.com")||Email.endsWith("@hotmail.com")){
+                this.Email = Email;
+            }
+            else {
+                throw new IllegalArgumentException();
+            }
+        }
+        catch (IllegalArgumentException e){
+            System.out.println("O email deve terminar com: '@gmail.com' ou '@hotmail.com'");
+        }
         this.num = num;
         this.sexo = sexo;
     }

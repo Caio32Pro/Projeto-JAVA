@@ -1,10 +1,30 @@
-import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
 
         Scanner teclado = new Scanner(System.in);
+
+        Cliente cli1 = new Cliente("Caio".toUpperCase(), "16", "m", "(19) 99837-6306", "caio32823@gmail.com");
+        Cliente.getClientes().add(cli1);
+        Cliente cli2 = new Cliente("Carla".toUpperCase(), "25", "f", "(19) 91234-5678", "carla@gmail.com");
+        Cliente.getClientes().add(cli2);
+        Cliente cli3 = new Cliente("Antunes".toUpperCase(), "69", "n/b", "4002-8922", "antunesmatue@gmail.com");
+        Cliente.getClientes().add(cli3);
+
+        Funcionario func1 = new Funcionario("Lucas".toUpperCase(), "19", "m", "(19) 97166-9363", "cl203514@g.unicamp.br");
+        Funcionario.getFuncionarios().add(func1);
+        Funcionario func2 = new Funcionario("Lucila".toUpperCase(), "42", "f", "(15)94585-0780", "coisaricadavo@hotmail.com");
+        Funcionario.getFuncionarios().add(func2);
+        Funcionario func3 = new Funcionario("Ray".toUpperCase(), "27", "m", "(19)98159-7662", "cl203518@g.unicamp.br");
+        Funcionario.getFuncionarios().add(func3);
+
+        Produto prod1 = new Produto("Pão doce".toUpperCase(), "Pão doce com recheio de goiabada".toUpperCase(), 6.99, 1, "doce");
+        Produto.getProdutos().add(prod1);
+        Produto prod2 = new Produto("Pamonha".toUpperCase(), "doce de milho verde".toUpperCase(), 8.99, 2, "doce");
+        Produto.getProdutos().add(prod2);
+        Produto prod3 = new Produto("Doritos".toUpperCase(), "Salgadinho da Pepsi'co sabor queijo nacho ".toUpperCase(), 7.99, 3, "salgado");
+        Produto.getProdutos().add(prod3);
 
         System.out.println("\n\nSeja muito bem-vindo(a) à Padaria Universo");
         System.out.println("------------------------------------------");
@@ -29,7 +49,7 @@ public class Main {
                     String opcao = teclado.nextLine();
                     switch (opcao) {
                         case "1": {
-                            try{
+                            try {
                                 System.out.println("Digite o nome do cliente: ");
                                 String nome = teclado.nextLine().toUpperCase();
                                 System.out.println("Digite a idade do cliente: ");
@@ -40,12 +60,17 @@ public class Main {
                                 String numero = teclado.nextLine();
                                 System.out.println("Digite o email do cliente: ");
                                 String email = teclado.nextLine();
-                                Cliente cli = new Cliente(nome, idade, sexo, numero, email);
-                                Cliente.getClientes().add(cli);
-                                System.out.println("Cliente cadastrado com sucesso!");
+                                if (email.endsWith("@gmail.com")||email.endsWith("@hotmail.com")) {
+                                    Cliente cli = new Cliente(nome, idade, sexo, numero, email);
+                                    Cliente.getClientes().add(cli);
+                                    System.out.println("Cliente cadastrado com sucesso!");
+                                }
+                                else {
+                                    throw new IllegalArgumentException();
+                                }
                             }
-                            catch(IllegalArgumentException e){
-                                System.out.println("O número não podeestar vazio.");
+                            catch (IllegalArgumentException e){
+                                System.out.println("O email deve terminar com: '@gmail.com' ou '@hotmail.com'");
                             }
                         break;
                         }
@@ -58,22 +83,18 @@ public class Main {
                                 if (Double.parseDouble(idade1) < 18) {
                                     throw new IllegalArgumentException();
                                 }
-                                else
-                                {
-                                    System.out.println("Digite o sexo do funcionário: ");
-                                    String sexo1 = teclado.nextLine();
-                                    System.out.println("Digite o telefone do funcionário: ");
-                                    String numero1 = teclado.nextLine();
-                                    System.out.println("Digite o email do funcionário: ");
-                                    String email1 = teclado.nextLine();
-                                    Funcionario func = new Funcionario(nome1, idade1, sexo1, numero1, email1);
-                                    Funcionario.getFuncionarios().add(func);
-                                    System.out.println("funcionário cadastrado com sucesso!");
-                                }
-
+                                System.out.println("Digite o sexo do funcionário: ");
+                                String sexo1 = teclado.nextLine();
+                                System.out.println("Digite o telefone do funcionário: ");
+                                String numero1 = teclado.nextLine();
+                                System.out.println("Digite o email do funcionário: ");
+                                String email1 = teclado.nextLine();
+                                Funcionario func = new Funcionario(nome1, idade1, sexo1, numero1, email1);
+                                Funcionario.getFuncionarios().add(func);
+                                System.out.println("funcionário cadastrado com sucesso!");
                             }
                             catch (IllegalArgumentException e){
-                                System.out.println("Insira valores válidos");
+                                System.out.println("A idade do funcionário não pode ser menor que 18 anos");
                             }
                         break;
                         }
@@ -174,7 +195,7 @@ public class Main {
                             String procProd = teclado.nextLine();
                             switch (procProd) {
                                 case "1": {
-                                    System.out.println("Digite a descrição do produto: ");
+                                    System.out.println("Digite a informação do produto: ");
                                     String c = teclado.nextLine().toUpperCase();
                                     for (Produto p : Produto.getProdutos()) {
                                         if (p.getDescricao().startsWith(c)) {
