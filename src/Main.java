@@ -71,10 +71,10 @@ public class Main {
                                     System.out.println("Cliente cadastrado com sucesso!");
                                 }
                                 else {
-                                    throw new IllegalArgumentException();
+                                    throw new EmailErradoException();
                                 }
                             }
-                            catch (IllegalArgumentException e){
+                            catch (EmailErradoException e){
                                 System.out.println("O email deve terminar com: '@gmail.com' ou '@hotmail.com'");
                             }
                             catch (IdadeMenorZeroException e){
