@@ -1,4 +1,6 @@
 import java.util.Scanner;
+import Exception.IdadeMenorZeroException;
+import Exception.EmailErradoException;
 
 public class Main {
     public static void main(String[] args) {
@@ -54,6 +56,9 @@ public class Main {
                                 String nome = teclado.nextLine().toUpperCase();
                                 System.out.println("Digite a idade do cliente: ");
                                 String idade = teclado.nextLine();
+                                if (Integer.parseInt(idade)<=0){
+                                    throw new IdadeMenorZeroException();
+                                }
                                 System.out.println("Digite o sexo do cliente: ");
                                 String sexo = teclado.nextLine();
                                 System.out.println("Digite o telefone do cliente: ");
@@ -72,6 +77,9 @@ public class Main {
                             catch (IllegalArgumentException e){
                                 System.out.println("O email deve terminar com: '@gmail.com' ou '@hotmail.com'");
                             }
+                            catch (IdadeMenorZeroException e){
+                                System.out.println("A idade não pode ser 0");
+                            }
                         break;
                         }
                         case "2": {
@@ -81,7 +89,7 @@ public class Main {
                                 System.out.println("Digite a idade do funcionário: ");
                                 String idade1 = teclado.nextLine();
                                 if (Double.parseDouble(idade1) < 18) {
-                                    throw new IllegalArgumentException();
+                                    throw new IdadeMenorZeroException();
                                 }
                                 System.out.println("Digite o sexo do funcionário: ");
                                 String sexo1 = teclado.nextLine();
@@ -89,12 +97,20 @@ public class Main {
                                 String numero1 = teclado.nextLine();
                                 System.out.println("Digite o email do funcionário: ");
                                 String email1 = teclado.nextLine();
-                                Funcionario func = new Funcionario(nome1, idade1, sexo1, numero1, email1);
-                                Funcionario.getFuncionarios().add(func);
-                                System.out.println("funcionário cadastrado com sucesso!");
+                                if (email1.endsWith("@gmail.com")||email1.endsWith("@hotmail.com")){
+                                    Funcionario func = new Funcionario(nome1, idade1, sexo1, numero1, email1);
+                                    Funcionario.getFuncionarios().add(func);
+                                    System.out.println("funcionário cadastrado com sucesso!");
+                                }
+                                else {
+                                    throw new EmailErradoException();
+                                }
                             }
-                            catch (IllegalArgumentException e){
+                            catch (IdadeMenorZeroException e){
                                 System.out.println("A idade do funcionário não pode ser menor que 18 anos");
+                            }
+                            catch (EmailErradoException e){
+                                System.out.println("O email deve terminar com: '@gmail.com' ou '@hotmail.com'");
                             }
                         break;
                         }
